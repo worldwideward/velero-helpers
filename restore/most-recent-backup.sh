@@ -4,5 +4,20 @@
 
 most_recent_backup=$(velero backup get | tail -n 1 | awk '{ print $1 }')
 
-velero restore create restore-website \
-	--from-backup $most_recent_backup \
+restore_name=$most_recent_backup-$RANDOM
+
+echo "Attempting to restore $most_recent_backup"
+read -p "Continue? (y/n) " x
+
+case $x in
+
+	y|Y)
+		velero restore create $restore_name \
+			--from-backup $most_recent_backup \
+		;;
+	n|N)
+		echo "Abort operation"
+		;;
+	*)
+		echo "ERROR: please type 'y' or 'n'"
+esac

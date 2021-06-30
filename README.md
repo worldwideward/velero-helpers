@@ -21,3 +21,6 @@ tar xf velero-$version-linux-amd64.tar.gz
 sudo cp velero-$version-linux-amd64/velero /usr/local/sbin/
 rm -Rf velero-v1.6.0-linux-amd64*
 ```
+#### Azure
+
+Run the script `01saadsl.sh` to set Azure as the default storage location, before performing any backups or restores.
