@@ -12,7 +12,7 @@ if [ -z "$1" ]; then
 
 	echo "Usage: ./one-time-backup [namespace] [backup-name]";
 else
-	velero backup create $backup_name \
+	velero backup create $backup_name-$RANDOM \
 		--include-namespaces $namespace \
 		--storage-location $storage_location \
 		--snapshot-volumes \
