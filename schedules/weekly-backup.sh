@@ -9,9 +9,6 @@ namespace="default"
 storage_location="azure"
 snapshot_location="default"
 
-# Set Azure as the default location, if this is not yet so.
-velero backup-location set azure --default
-
 velero schedule create $schedule_name \
 	--schedule "$schedule" \
 	--ttl $retention \
