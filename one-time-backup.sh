@@ -3,14 +3,18 @@
 # Use Velero to create an one-time snapshot
 # of k8s persistent volumes in the default namespace.
 
-backup_name="kube-backup"
-namespace="default"
+backup_name=$2
+namespace=$1
 storage_location="azure"
 snapshot_location="default"
 
-velero backup create $backup_name \
-	--include-namespaces $namespace \
-	--storage-location $storage_location \
-	--snapshot-volumes \
-	--volume-snapshot-locations $snapshot_location
+if [ -z "$1" ]; then
 
+	echo "Usage: ./one-time-backup [namespace] [backup-name]";
+else
+	velero backup create $backup_name \
+		--include-namespaces $namespace \
+		--storage-location $storage_location \
+		--snapshot-volumes \
+		--volume-snapshot-locations $snapshot_location
+fi

@@ -2,7 +2,7 @@
 
 # An example schedule for a weekly Velero backup
 
-schedule_name="kube-schedule"
+schedule_name="website"
 schedule="0 3 * * 1"
 retention="1440h0m0s"
 namespace="default"
@@ -13,7 +13,7 @@ snapshot_location="default"
 velero backup-location set azure --default
 
 velero schedule create $schedule_name \
-	--schedule $schedule \
+	--schedule "$schedule" \
 	--ttl $retention \
 	--include-namespaces $namespace \
 	--storage-location $storage_location \
